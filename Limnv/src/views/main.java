@@ -15,6 +15,8 @@ public class main {
 
         if (conn != null) {
             System.out.println("Conectado!");
+            fPrincipal form = new fPrincipal();
+            form.show();
         }
     }
 }
