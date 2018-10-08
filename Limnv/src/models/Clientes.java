@@ -1,8 +1,8 @@
 package models;
 
-public class Clientes extends ObjetoData {
+public class Clientes {
     private int Id;
-    private String nome;
+    private String Nome;
     private String Cpf;
     private String Senha;
 
@@ -11,11 +11,11 @@ public class Clientes extends ObjetoData {
     }
 
     public String getNome() {
-        return nome;
+        return Nome;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.Nome = nome;
     }
 
     public String getCpf() {
