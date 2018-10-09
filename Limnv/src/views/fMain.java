@@ -6,11 +6,11 @@ import javax.swing.*;
 public class fMain extends JFrame{
     
     JLabel lblLogo, lblBorda, lblBemVindo;
-    JButton btnSaldo, btnDeposito, btnSacar, btnTransferir, btnPagamentos, btnExtrato;
+    JButton btnSaldo, btnDeposito, btnSacar, btnTransferir, btnPagamentos, btnExtrato, btnConfiguracoes, btnSair;
     
     public fMain(){
         this.setTitle("LIMNV - ATM");
-        this.setSize(637, 305);
+        this.setSize(637, 375);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setLayout(null);
         this.setLocationRelativeTo(null);
@@ -29,10 +29,10 @@ public class fMain extends JFrame{
         this.getContentPane().add(lblBorda);
         lblBorda.setBounds(5,10,350,20);
         
-        lblBemVindo = new JLabel("Bem vindo, Fulano");
+        lblBemVindo = new JLabel("Bem vindo, " + UsuarioLogado.Nome);
         this.getContentPane().add(lblBemVindo);
-        lblBemVindo.setFont(new Font("Arial", Font.BOLD, 18));
-        lblBemVindo.setBounds(5, 30, 200, 25);
+        lblBemVindo.setFont(new Font("Arial", Font.BOLD, 14));
+        lblBemVindo.setBounds(5, 30, 350, 25);
         
         btnSacar = new JButton("Saque");
         this.getContentPane().add(btnSacar);
@@ -57,6 +57,14 @@ public class fMain extends JFrame{
         btnExtrato = new JButton("Extrato");
         this.getContentPane().add(btnExtrato);
         btnExtrato.setBounds(315, 200, 300, 60);
+        
+        btnConfiguracoes = new JButton("Configurações");
+        this.getContentPane().add(btnConfiguracoes);
+        btnConfiguracoes.setBounds(5, 270, 300, 60);
+        
+        btnSair = new JButton("Sair");
+        this.getContentPane().add(btnSair);
+        btnSair.setBounds(315, 270, 300, 60);
         
         this.setVisible(true);
         
