@@ -51,7 +51,7 @@ public class Conta implements Model {
 
     @Override
     public String toInsertSQL() {
-        return "INSERT INTO CONTA (DESCRICAO, CLIENTEID, TIPO) values ('" + Descricao + "', " + ClienteID + ",'" + Tipo + "')";
+        return "INSERT INTO CONTAS (DESCRICAO, CLIENTEID, TIPO) values ('" + Descricao + "', " + ClienteID + ",'" + Tipo + "')";
     }
 
     @Override

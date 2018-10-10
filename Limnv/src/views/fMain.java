@@ -1,12 +1,17 @@
 package views;
 
+import controllers.ContasBLL;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.*;
 import javax.swing.*;
 
 public class fMain extends JFrame{
     
-    JLabel lblLogo, lblBorda, lblBemVindo;
+    JLabel lblLogo, lblBorda, lblBemVindo, lblConta;
     JButton btnSaldo, btnDeposito, btnSacar, btnTransferir, btnPagamentos, btnExtrato, btnConfiguracoes, btnSair;
+    JComboBox<String> cbConta;
     
     public fMain(){
         this.setTitle("LIMNV - ATM");
@@ -33,6 +38,25 @@ public class fMain extends JFrame{
         this.getContentPane().add(lblBemVindo);
         lblBemVindo.setFont(new Font("Arial", Font.BOLD, 14));
         lblBemVindo.setBounds(5, 30, 350, 25);
+        
+        lblConta = new JLabel("Conta selecionada:");
+        this.getContentPane().add(lblConta);
+        lblConta.setBounds(300, 15, 120, 25);
+        
+        cbConta = new JComboBox<String>();
+        this.getContentPane().add(cbConta);
+        cbConta.setBounds(415, 15, 200, 25);        
+        List<String> descricoes = new ArrayList<String>();
+        descricoes = ContasBLL.ObterDescricaoContas(UsuarioLogado.ClienteID);
+        for (int i = 0; i < descricoes.size(); i++) {
+            cbConta.addItem(descricoes.get(i));
+        }
+        cbConta.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UsuarioLogado.ContaID = ContasBLL.ObterContaIDPorDescricoes(cbConta.getSelectedItem().toString());
+            }
+        });
         
         btnSacar = new JButton("Saque");
         this.getContentPane().add(btnSacar);
