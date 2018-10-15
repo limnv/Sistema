@@ -15,10 +15,11 @@ public class fMain extends JFrame{
     
     public fMain(){
         this.setTitle("LIMNV - ATM");
-        this.setSize(637, 375);
+        this.setSize(627, 365);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setLayout(null);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         
         lblLogo = new JLabel("LIMNV");
         this.getContentPane().add(lblLogo);
@@ -36,7 +37,7 @@ public class fMain extends JFrame{
         
         lblBemVindo = new JLabel("Bem vindo, " + UsuarioLogado.Nome);
         this.getContentPane().add(lblBemVindo);
-        lblBemVindo.setFont(new Font("Arial", Font.BOLD, 14));
+        lblBemVindo.setFont(new Font("Arial", Font.BOLD, 13));
         lblBemVindo.setBounds(5, 30, 350, 25);
         
         lblConta = new JLabel("Conta selecionada:");
@@ -55,8 +56,11 @@ public class fMain extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 UsuarioLogado.ContaID = ContasBLL.ObterContaIDPorDescricoes(cbConta.getSelectedItem().toString());
+                UsuarioLogado.DescricaoConta = cbConta.getSelectedItem().toString();
             }
         });
+        UsuarioLogado.ContaID = ContasBLL.ObterContaIDPorDescricoes(cbConta.getSelectedItem().toString());
+        UsuarioLogado.DescricaoConta = cbConta.getSelectedItem().toString();
         
         btnSacar = new JButton("Saque");
         this.getContentPane().add(btnSacar);
@@ -69,6 +73,13 @@ public class fMain extends JFrame{
         btnDeposito = new JButton("Depositar");
         this.getContentPane().add(btnDeposito);
         btnDeposito.setBounds(5, 130, 300, 60);
+        btnDeposito.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fDeposito frmDeposito = new fDeposito();
+                frmDeposito.Exibir();
+            }
+        } );
         
         btnTransferir = new JButton("Transferir");
         this.getContentPane().add(btnTransferir);
@@ -89,6 +100,12 @@ public class fMain extends JFrame{
         btnSair = new JButton("Sair");
         this.getContentPane().add(btnSair);
         btnSair.setBounds(315, 270, 300, 60);
+        btnSair.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+            }
+        });
         
         this.setVisible(true);
         

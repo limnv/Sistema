@@ -71,4 +71,28 @@ public class ContasBLL {
             return -1;
         }
     }
+    
+    public static int ObterQTDContaAtivas(int ClienteID){
+        Connection conn = Conexao.obterConexao();
+
+        PreparedStatement ps;
+
+        String sql = "SELECT count(*) as qtd FROM contas WHERE clienteID= " + ClienteID + " AND ativo = 'S'";
+        
+        try {
+            ps = conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+            
+            int codigo = -1;
+
+            while (rs.next()) {
+                codigo = rs.getInt("qtd");
+            }
+
+            return codigo;
+        } catch (SQLException ex) {
+            return -1;
+        }
+    }
 }

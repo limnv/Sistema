@@ -6,6 +6,7 @@ public class Conta implements Model {
     private int ClienteID;
     private float Saldo;
     private String Tipo;
+    private String Ativo;
     
     
 
@@ -48,6 +49,15 @@ public class Conta implements Model {
     public void setTipo(String Tipo) {
         this.Tipo = Tipo;
     }
+
+    public String getAtivo() {
+        return Ativo;
+    }
+
+    public void setAtivo(String Ativo) {
+        this.Ativo = Ativo;
+    }
+    
 
     @Override
     public String toInsertSQL() {
