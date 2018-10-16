@@ -1,27 +1,39 @@
 package views;
 
 import controllers.ContasBLL;
+import controllers.DepositoBLL;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.*;
+import java.util.Date;
 import javax.swing.*;
+import javax.swing.text.*;
 import models.Deposito;
 
 public class fDeposito extends JDialog {
 
-    JLabel lblLogo, lblBorda, lblCabecalho, lblPNLTitulo;
-    JPanel pnlDestino, pnlTipo, pnlVlr, pnlResumo, pnlEnvelope, pnlFim;
-    
+    JLabel lblLogo, lblBorda, lblCabecalho, lblConta, lblContaDescricao, lblTipo, lblValor;
+    JRadioButton rbCheque, rbDinheiro;
+    JFormattedTextField txtValor;
+    JButton btnEfetuar, btnCancelar;
+
     Deposito d;
 
     public fDeposito() {
         this.setTitle("Depósito");
-        this.setSize(500, 500);
+        this.setSize(352, 300);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.getContentPane().setLayout(null);
         this.setLocationRelativeTo(null);
-        
-        d = new Deposito();
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/dd/MM HH:mm:ss");
+
+        DecimalFormat decimal = new DecimalFormat("###.00");
+        NumberFormatter numFormatter = new NumberFormatter(decimal);
+        numFormatter.setFormat(decimal);
+        numFormatter.setAllowsInvalid(false);
+        DefaultFormatterFactory dfFactory = new DefaultFormatterFactory(numFormatter);
 
         lblLogo = new JLabel("LIMNV");
         this.getContentPane().add(lblLogo);
@@ -42,53 +54,90 @@ public class fDeposito extends JDialog {
         lblCabecalho.setFont(new Font("Arial", Font.BOLD, 13));
         lblCabecalho.setBounds(5, 30, 350, 25);
 
-        ExibePNLDestino();
+        lblConta = new JLabel("Conta selecionada:");
+        this.getContentPane().add(lblConta);
+        lblConta.setBounds(5, 65, 120, 20);
 
-    }
+        lblContaDescricao = new JLabel("[" + UsuarioLogado.ContaID + "] " + UsuarioLogado.DescricaoConta);
+        this.getContentPane().add(lblContaDescricao);
+        lblContaDescricao.setBounds(120, 65, 200, 20);
 
-    public void ExibePNLDestino() {
-        pnlDestino = new JPanel();
-        pnlDestino.setLayout(null);
-        //pnlDestino.setBackground(Color.red);
+        lblTipo = new JLabel("Forma de Depósito:");
+        this.getContentPane().add(lblTipo);
+        lblTipo.setBounds(5, 95, 130, 20);
 
-        lblPNLTitulo = new JLabel("Selecione a conta destino:");
-        pnlDestino.add(lblPNLTitulo);
-        lblPNLTitulo.setBounds(5, 5, 150, 20);
-
-        JButton btnContaAtual = new JButton("Conta atual: " + UsuarioLogado.DescricaoConta);
-        pnlDestino.add(btnContaAtual);
-        btnContaAtual.setBounds(25, 30, 425, 50);
-        btnContaAtual.addActionListener(new ActionListener() {
+        rbCheque = new JRadioButton("Cheque");
+        this.getContentPane().add(rbCheque);
+        rbCheque.setBounds(5, 120, 130, 20);
+        rbCheque.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                d.setContaID(UsuarioLogado.ContaID);
+                if (rbDinheiro.isSelected()) {
+                    rbDinheiro.setSelected(false);
+                }
             }
         });
-        
 
-        int pos = 90;
-        if (ContasBLL.ObterQTDContaAtivas(UsuarioLogado.ClienteID) > 1) {
-            JButton btnOutraContaSua = new JButton("Outra conta sua");
-            pnlDestino.add(btnOutraContaSua);
-            btnOutraContaSua.setBounds(25, 90, 425, 50);
-            pos = 150;
-            btnOutraContaSua.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    
+        rbDinheiro = new JRadioButton("Dinheiro");
+        this.getContentPane().add(rbDinheiro);
+        rbDinheiro.setBounds(5, 145, 130, 20);
+        rbDinheiro.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (rbCheque.isSelected()) {
+                    rbCheque.setSelected(false);
                 }
-            });
-        }
+            }
+        });
 
-        JButton btnOutraConta = new JButton("Conta de outro titular");
-        pnlDestino.add(btnOutraConta);
-        btnOutraConta.setBounds(25, pos, 425, 50);
+        lblValor = new JLabel("Valor:");
+        this.getContentPane().add(lblValor);
+        lblValor.setBounds(5, 175, 80, 20);
 
-        this.getContentPane().add(pnlDestino);
-        pnlDestino.setBounds(0, 60, 475, 400);
+        NumberFormat f = NumberFormat.getCurrencyInstance();
+
+        txtValor = new JFormattedTextField();
+        txtValor.setFormatterFactory(dfFactory);
+        this.getContentPane().add(txtValor);
+        txtValor.setBounds(5, 200, 100, 20);
+
+        btnEfetuar = new JButton("Efetuar");
+        this.getContentPane().add(btnEfetuar);
+        btnEfetuar.setBounds(230, 230, 100, 25);
+        btnEfetuar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if ((!rbCheque.isSelected() && !rbDinheiro.isSelected()) || txtValor.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Você deve informar o valor e o tipo de depósito.", "Erro", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    if (JOptionPane.showConfirmDialog(null, "Deseja realmente efetuar esta operação?", "Confirmação", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                        d = new Deposito();
+                        d.setContaID(UsuarioLogado.ContaID);
+                        if (rbCheque.isSelected()) {
+                            d.setTipo("C");
+                        } else {
+                            d.setTipo("D");
+                        }
+                        d.setValorOperacao(Double.parseDouble(txtValor.getText().replace(",", ".")));
+                        Date date = new Date();
+                        d.setDataOperacao(formatter.format(date));
+                        DepositoBLL.Efetuar(d);
+                        setVisible(false);
+                    }
+                }
+            }
+        });
+
+        btnCancelar = new JButton("Cancelar");
+        this.getContentPane().add(btnCancelar);
+        btnCancelar.setBounds(5, 230, 100, 25);
+        btnCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+            }
+        });
     }
-    
-    public void ExibePNL
 
     public void Exibir() {
         this.setModal(true);

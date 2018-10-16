@@ -6,7 +6,7 @@ import java.util.List;
 import models.*;
 
 public class ContasBLL {
-    
+
     public static void Inserir(Conta ct) {
         Connection conn = Conexao.obterConexao();
 
@@ -17,13 +17,13 @@ public class ContasBLL {
         try {
             ps = conn.prepareStatement(sql);
 
-            int result = ps.executeUpdate();           
+            int result = ps.executeUpdate();
 
         } catch (SQLException ex) {
         }
     }
-    
-    public static List<String> ObterDescricaoContas(int ClienteID){
+
+    public static List<String> ObterDescricaoContas(int ClienteID) {
         Connection conn = Conexao.obterConexao();
 
         PreparedStatement ps;
@@ -31,7 +31,7 @@ public class ContasBLL {
         String sql = "SELECT descricao FROM contas WHERE clienteid= " + ClienteID;
 
         List<String> descricoes = new ArrayList<String>();
-        
+
         try {
             ps = conn.prepareStatement(sql);
 
@@ -47,23 +47,23 @@ public class ContasBLL {
             return null;
         }
     }
-    
-    public static int ObterContaIDPorDescricoes(String descricao){
+
+    public static int ObterContaIDPorDescricoes(String descricao) {
         Connection conn = Conexao.obterConexao();
 
         PreparedStatement ps;
 
-        String sql = "SELECT contaid FROM contas WHERE descricao= '" + descricao + "'";
-        
+        String sql = "SELECT id FROM contas WHERE descricao= '" + descricao + "'";
+
         try {
             ps = conn.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
-            
+
             int codigo = -1;
 
             while (rs.next()) {
-                codigo = rs.getInt("contaid");
+                codigo = rs.getInt("id");
             }
 
             return codigo;
@@ -71,28 +71,59 @@ public class ContasBLL {
             return -1;
         }
     }
-    
-    public static int ObterQTDContaAtivas(int ClienteID){
+
+    public static double ObterSaldo(int ContaID) {
         Connection conn = Conexao.obterConexao();
 
         PreparedStatement ps;
 
-        String sql = "SELECT count(*) as qtd FROM contas WHERE clienteID= " + ClienteID + " AND ativo = 'S'";
-        
+        String sql = "SELECT saldo FROM contas WHERE id= " + ContaID;
+
         try {
             ps = conn.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
-            
-            int codigo = -1;
+
+            double saldo = -1;
 
             while (rs.next()) {
-                codigo = rs.getInt("qtd");
+                saldo = rs.getDouble("saldo");
             }
 
-            return codigo;
+            return saldo;
         } catch (SQLException ex) {
             return -1;
         }
     }
+
+    public static double AlterarSaldo(double valor, String oper, int ContaID) {
+        Connection conn = Conexao.obterConexao();
+
+        PreparedStatement ps;
+        
+        double NovoSaldo = ObterSaldo(ContaID);
+        
+        switch(oper) {
+            case "+":
+                NovoSaldo += valor;
+                break;
+            case "-":
+                NovoSaldo -= valor;
+                break;
+        }
+
+        String sql = "UPDATE contas SET saldo = " + NovoSaldo;
+
+        try {
+            ps = conn.prepareStatement(sql);
+
+            int result = ps.executeUpdate();
+            
+            return NovoSaldo;
+
+        } catch (SQLException ex) {
+            return -1;
+        }
+    }
+
 }

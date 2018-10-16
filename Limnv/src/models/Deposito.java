@@ -5,8 +5,8 @@ public class Deposito implements Model{
     private int ID;
     private int ContaID;
     private String DataOperacao;
-    private Float ValorOperacao;
-    private Float ValorFinal;
+    private double ValorOperacao;
+    private double ValorFinal;
     private String Tipo;
 
     public int getID() {
@@ -33,19 +33,19 @@ public class Deposito implements Model{
         this.DataOperacao = DataOperacao;
     }
 
-    public Float getValorOperacao() {
+    public double getValorOperacao() {
         return ValorOperacao;
     }
 
-    public void setValorOperacao(Float ValorOperacao) {
+    public void setValorOperacao(double ValorOperacao) {
         this.ValorOperacao = ValorOperacao;
     }
 
-    public Float getValorFinal() {
+    public double getValorFinal() {
         return ValorFinal;
     }
 
-    public void setValorFinal(Float ValorFinal) {
+    public void setValorFinal(double ValorFinal) {
         this.ValorFinal = ValorFinal;
     }
 
@@ -59,7 +59,7 @@ public class Deposito implements Model{
     
     @Override
     public String toInsertSQL() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "INSERT INTO depositos (CONTAID, DATAOPERACAO, VALOROPERACAO, VALORFINAL, TIPO) values (" + ContaID + ", '" + DataOperacao + "', " + ValorOperacao + ", " + ValorFinal + ", '" + Tipo + "')";
     }
 
     @Override

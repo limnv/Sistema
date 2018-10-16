@@ -4,7 +4,7 @@ public class Conta implements Model {
     private int ID;
     private String Descricao;
     private int ClienteID;
-    private float Saldo;
+    private double Saldo;
     private String Tipo;
     private String Ativo;
     
@@ -34,11 +34,11 @@ public class Conta implements Model {
         this.ClienteID = ClienteID;
     }
 
-    public float getSaldo() {
+    public double getSaldo() {
         return Saldo;
     }
 
-    public void setSaldo(float Saldo) {
+    public void setSaldo(double Saldo) {
         this.Saldo = Saldo;
     }
 
