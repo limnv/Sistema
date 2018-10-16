@@ -112,7 +112,7 @@ public class ContasBLL {
                 break;
         }
 
-        String sql = "UPDATE contas SET saldo = " + NovoSaldo;
+        String sql = "UPDATE contas SET saldo = " + NovoSaldo + " WHERE id = " + ContaID;
 
         try {
             ps = conn.prepareStatement(sql);

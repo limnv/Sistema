@@ -69,6 +69,13 @@ public class fMain extends JFrame{
         btnSaldo = new JButton("Saldo");
         this.getContentPane().add(btnSaldo);
         btnSaldo.setBounds(315, 60, 300, 60);
+        btnSaldo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fSaldo frmSaldo = new fSaldo();
+                frmSaldo.Exibir();
+            }
+        });
         
         btnDeposito = new JButton("Depositar");
         this.getContentPane().add(btnDeposito);
