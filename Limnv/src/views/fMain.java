@@ -65,6 +65,13 @@ public class fMain extends JFrame{
         btnSacar = new JButton("Saque");
         this.getContentPane().add(btnSacar);
         btnSacar.setBounds(5, 60, 300, 60);
+        btnSacar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fSaque frmSaque = new fSaque();
+                frmSaque.Exibir();
+            }
+        });
         
         btnSaldo = new JButton("Saldo");
         this.getContentPane().add(btnSaldo);
@@ -95,6 +102,13 @@ public class fMain extends JFrame{
         btnPagamentos = new JButton("Pagamentos");
         this.getContentPane().add(btnPagamentos);
         btnPagamentos.setBounds(5, 200, 300, 60);
+        btnPagamentos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fPagamentos frmPagamentos = new fPagamentos();
+                frmPagamentos.Exibir();
+            }
+        });
         
         btnExtrato = new JButton("Extrato");
         this.getContentPane().add(btnExtrato);

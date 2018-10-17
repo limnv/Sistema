@@ -7,8 +7,6 @@ public class Conta implements Model {
     private double Saldo;
     private String Tipo;
     private String Ativo;
-    
-    
 
     public int getID() {
         return ID;
