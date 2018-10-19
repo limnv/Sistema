@@ -98,6 +98,13 @@ public class fMain extends JFrame{
         btnTransferir = new JButton("Transferir");
         this.getContentPane().add(btnTransferir);
         btnTransferir.setBounds(315, 130, 300, 60);
+        btnTransferir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fTransferencias frmTransferencias = new fTransferencias();
+                frmTransferencias.Exibir();
+            }
+        });
         
         btnPagamentos = new JButton("Pagamentos");
         this.getContentPane().add(btnPagamentos);
@@ -117,6 +124,13 @@ public class fMain extends JFrame{
         btnConfiguracoes = new JButton("Configurações");
         this.getContentPane().add(btnConfiguracoes);
         btnConfiguracoes.setBounds(5, 270, 300, 60);
+        btnConfiguracoes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fConfiguracoes frmConfiguracoes = new fConfiguracoes();
+                frmConfiguracoes.Exibir();
+            }
+        });
         
         btnSair = new JButton("Sair");
         this.getContentPane().add(btnSair);
