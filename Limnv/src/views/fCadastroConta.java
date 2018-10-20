@@ -64,7 +64,7 @@ public class fCadastroConta extends JDialog {
         btnSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if ((txtDescricao.equals("")) || ((!rbCorrente.isSelected()) && (!rbPoupanca.isSelected()))) {
+                if (txtDescricao.getText().equals("") || ((!rbCorrente.isSelected()) && (!rbPoupanca.isSelected()))) {
                     JOptionPane.showMessageDialog(null, "Você deve preencher a descrição " + System.lineSeparator() + " e selecionar o tipo de conta.", "Erro", JOptionPane.ERROR_MESSAGE);
                 } else {
                     String Tipo;
