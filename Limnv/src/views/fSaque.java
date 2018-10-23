@@ -1,19 +1,13 @@
 package views;
 
-import controllers.ContasBLL;
-import controllers.DepositoBLL;
-import controllers.SaquesBLL;
+import controllers.*;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
+import java.awt.event.*;
+import java.text.*;
 import java.util.Date;
 import javax.swing.*;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
-import models.Deposito;
 import models.Saque;
 
 public class fSaque extends JDialog{
@@ -68,8 +62,6 @@ public class fSaque extends JDialog{
         lblValor = new JLabel("Valor:");
         this.getContentPane().add(lblValor);
         lblValor.setBounds(5, 95, 130, 20);
-
-        NumberFormat f = NumberFormat.getCurrencyInstance();
 
         txtValor = new JFormattedTextField();
         txtValor.setFormatterFactory(dfFactory);
