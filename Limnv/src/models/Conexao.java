@@ -21,7 +21,6 @@ public class Conexao {
                 return null;
             }
         }
-
         return ConexaoAtual;
     }
 

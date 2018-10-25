@@ -1,5 +1,7 @@
 package views;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
@@ -20,10 +22,24 @@ public class fConfiguracoes extends JDialog{
         btnGerenciarContas = new JButton("Gerenciar Contas");
         this.getContentPane().add(btnGerenciarContas);
         btnGerenciarContas.setBounds(5, 5, 300, 60);
+        btnGerenciarContas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fGerenciarContas frmGerenciarContas = new fGerenciarContas();
+                frmGerenciarContas.Exibir();
+            }
+        });
         
         btnAlterarSenha = new JButton("Alterar Senha");
         this.getContentPane().add(btnAlterarSenha);
         btnAlterarSenha.setBounds(5, 75, 300, 60);
+        btnAlterarSenha.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fAlterarSenha frmAlterarSenha = new fAlterarSenha();
+                frmAlterarSenha.Exibir();
+            }
+        });
     }
     
     public void Exibir() {

@@ -1,12 +1,17 @@
 package models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Conta implements Model {
     private int ID;
     private String Descricao;
     private int ClienteID;
     private double Saldo;
     private String Tipo;
-    private String Ativo;
+    private String Ativo;    
 
     public int getID() {
         return ID;
@@ -64,12 +69,12 @@ public class Conta implements Model {
 
     @Override
     public String toUpdateSQL() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "UPDATE contas SET DESCRICAO = '" + Descricao + "', TIPO = '" + Tipo + "' WHERE ID = " + ID;
     }
 
     @Override
     public String toDeletoSQL() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "UPDATE contas SET ATIVO = 'N' WHERE ID = " + ID;
     }
     
 }

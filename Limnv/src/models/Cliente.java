@@ -58,6 +58,10 @@ public class Cliente implements Model {
     public String toDeletoSQL() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public String toAlterarSenhaSQL(){
+        return "UPDATE clientes SET senha = '" + Senha + "' WHERE id = " + Id;
+    }
         
     
 }

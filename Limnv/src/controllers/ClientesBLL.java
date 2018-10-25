@@ -22,6 +22,22 @@ public class ClientesBLL {
         }
     }
     
+    public static void AlterarSenha(Cliente c){
+        Connection conn = Conexao.obterConexao();
+
+        PreparedStatement ps;
+
+        String sql = c.toAlterarSenhaSQL();
+
+        try {
+            ps = conn.prepareStatement(sql);
+
+            int result = ps.executeUpdate();           
+
+        } catch (SQLException ex) {
+        }
+    }
+    
     public static Cliente ObterPorCPF(String CPF){
         Connection conn = Conexao.obterConexao();
 
