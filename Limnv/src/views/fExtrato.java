@@ -24,7 +24,7 @@ public class fExtrato extends JDialog {
 
     public fExtrato() {
         this.setTitle("Extrato");
-        this.setSize(450, 500);
+        this.setSize(650, 500);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.getContentPane().setLayout(null);
         this.setLocationRelativeTo(null);
@@ -93,11 +93,11 @@ public class fExtrato extends JDialog {
         });
 
         tblExtrato = new JTable();
-        tblExtrato.setBounds(5, 95, 400, 350);
+        tblExtrato.setBounds(5, 95, 600, 350);
 
         sp = new JScrollPane(tblExtrato);
         this.getContentPane().add(sp);
-        sp.setBounds(5, 95, 400, 350);
+        sp.setBounds(5, 95, 600, 350);
 
     }
 
@@ -111,9 +111,10 @@ public class fExtrato extends JDialog {
             extratosTableModel.setNumRows(0);
         extratosTableModel = new ExtratoTableModel(ExtratosBLL.ObterListaExtrato(DataInicial, DataFinal));
         tblExtrato.setModel(extratosTableModel);
-        tblExtrato.getColumnModel().getColumn(0).setPreferredWidth(80);
-        tblExtrato.getColumnModel().getColumn(1).setPreferredWidth(220);
-        tblExtrato.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tblExtrato.getColumnModel().getColumn(0).setPreferredWidth(150);
+        tblExtrato.getColumnModel().getColumn(1).setPreferredWidth(180);
+        tblExtrato.getColumnModel().getColumn(2).setPreferredWidth(80);
+        tblExtrato.getColumnModel().getColumn(3).setPreferredWidth(80);
     }
 
 }

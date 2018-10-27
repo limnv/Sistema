@@ -48,7 +48,7 @@ public class SaquesBLL {
 
             while (rs.next()) {
                 Extrato e = new Extrato();
-                e.setData(rs.getDate("DATAOPERACAO"));  
+                e.setData(rs.getTimestamp("DATAOPERACAO"));  
                 e.setDescricao("Saque");                
                 e.setValorOperacao(rs.getDouble("VALOROPERACAO"));
                 e.setValorFinal(rs.getDouble("VALORFINAL"));

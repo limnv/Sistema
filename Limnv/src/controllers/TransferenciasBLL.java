@@ -48,7 +48,7 @@ public class TransferenciasBLL {
 
             while (rs.next()) {
                 Extrato e = new Extrato();
-                e.setData(rs.getDate("DATAOPERACAO"));  
+                e.setData(rs.getTimestamp("DATAOPERACAO"));  
                 e.setDescricao("Transferência para a Conta ID(" + rs.getInt("CONTAIDDESTINO") + ")");                
                 e.setValorOperacao(rs.getDouble("VALOROPERACAO"));
                 e.setValorFinal(rs.getDouble("VALORFINAL"));

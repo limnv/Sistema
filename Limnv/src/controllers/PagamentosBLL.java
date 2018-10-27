@@ -46,7 +46,7 @@ public class PagamentosBLL {
 
             while (rs.next()) {
                 Extrato e = new Extrato();
-                e.setData(rs.getDate("DATAOPERACAO"));  
+                e.setData(rs.getTimestamp("DATAOPERACAO"));  
                 e.setDescricao("Pagamento: " + rs.getString("DESCRICAO") );                
                 e.setValorOperacao(rs.getDouble("VALOROPERACAO"));
                 e.setValorFinal(rs.getDouble("VALORFINAL"));

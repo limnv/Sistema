@@ -10,7 +10,7 @@ import models.Extrato;
  */
 public class ExtratoTableModel extends DefaultTableModel {
     
-    private String ColumnNames[] = new String[]{"Data","Descrição","Vlr. Operação", "Vlr. Final"};
+    private String ColumnNames[] = new String[]{"Data","Descrição","Vlr. Oper", "Vlr. Final"};
     
     private List<Extrato> Dados;
     
@@ -36,7 +36,7 @@ public class ExtratoTableModel extends DefaultTableModel {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 4;
     }
 
     @Override

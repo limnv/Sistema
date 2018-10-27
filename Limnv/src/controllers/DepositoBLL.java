@@ -1,15 +1,8 @@
 package controllers;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import models.Cliente;
-import models.Conexao;
-import models.Deposito;
-import models.Extrato;
+import java.sql.*;
+import java.util.*;
+import models.*;
 import views.UsuarioLogado;
 
 public class DepositoBLL {
@@ -51,7 +44,7 @@ public class DepositoBLL {
 
             while (rs.next()) {
                 Extrato e = new Extrato();
-                e.setData(rs.getDate("DATAOPERACAO"));
+                e.setData(rs.getTimestamp("DATAOPERACAO"));
                 String Tipo = rs.getString("TIPO");
                 if(Tipo.equals("D")){
                     e.setDescricao("Depósito em Dinheiro");
