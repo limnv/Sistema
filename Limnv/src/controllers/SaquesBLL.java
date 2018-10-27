@@ -1,10 +1,9 @@
 package controllers;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import models.Conexao;
-import models.Saque;
+import java.sql.*;
+import java.util.*;
+import models.*;
+import views.UsuarioLogado;
 
 /**
  *
@@ -30,6 +29,36 @@ public class SaquesBLL {
             int result = ps.executeUpdate();
 
         } catch (SQLException ex) {
+        }
+    }
+    
+    public static List<Extrato> ObterListaPorData(String DataInicial, String DataFinal) {
+        Connection conn = Conexao.obterConexao();
+
+        PreparedStatement ps;
+
+        String sql = "SELECT * FROM saques WHERE dataoperacao BETWEEN '" + DataInicial + "' AND '" + DataFinal + "' AND contaid = " + UsuarioLogado.ContaID;
+
+        try {
+            ps = conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            List<Extrato> lista = new ArrayList<Extrato>();
+
+            while (rs.next()) {
+                Extrato e = new Extrato();
+                e.setData(rs.getDate("DATAOPERACAO"));  
+                e.setDescricao("Saque");                
+                e.setValorOperacao(rs.getDouble("VALOROPERACAO"));
+                e.setValorFinal(rs.getDouble("VALORFINAL"));
+
+                lista.add(e);
+            }
+
+            return lista;
+        } catch (SQLException ex) {
+            return null;
         }
     }
 }

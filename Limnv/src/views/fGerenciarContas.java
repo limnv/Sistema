@@ -210,10 +210,7 @@ public class fGerenciarContas extends JDialog {
 
         tblContas = new JTable();
         tblContas.setBounds(5, 320, 310, 150);
-        PopulaTabela();
-        tblContas.getColumnModel().getColumn(0).setPreferredWidth(35);
-        tblContas.getColumnModel().getColumn(1).setPreferredWidth(245);
-        tblContas.getColumnModel().getColumn(2).setPreferredWidth(35);
+        PopulaTabela();        
         tblContas.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -239,6 +236,9 @@ public class fGerenciarContas extends JDialog {
         contasTableModel.setNumRows(0);
         contasTableModel = new ContasTableModel(ContasBLL.ObterListaContasPorClienteID(UsuarioLogado.ClienteID));
         tblContas.setModel(contasTableModel);
+        tblContas.getColumnModel().getColumn(0).setPreferredWidth(35);
+        tblContas.getColumnModel().getColumn(1).setPreferredWidth(245);
+        tblContas.getColumnModel().getColumn(2).setPreferredWidth(35);
     }
 
     public void preencheCampos(int cod) {

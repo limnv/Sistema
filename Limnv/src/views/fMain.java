@@ -120,6 +120,13 @@ public class fMain extends JFrame{
         btnExtrato = new JButton("Extrato");
         this.getContentPane().add(btnExtrato);
         btnExtrato.setBounds(315, 200, 300, 60);
+        btnExtrato.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fExtrato frmExtrato = new fExtrato();
+                frmExtrato.Exibir();
+            }
+        });
         
         btnConfiguracoes = new JButton("Configurações");
         this.getContentPane().add(btnConfiguracoes);
