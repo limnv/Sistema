@@ -47,6 +47,13 @@ public class fLogin extends JDialog {
             txtCpf = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
             this.getContentPane().add(txtCpf);
             txtCpf.setBounds(60, 55, 120, 20);
+            txtCpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+               if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+                txtSenha.requestFocus();
+               }
+            }
+        });
         } catch (ParseException ex) {
             Logger.getLogger(fLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -58,6 +65,37 @@ public class fLogin extends JDialog {
         txtSenha = new JPasswordField();
         this.getContentPane().add(txtSenha);
         txtSenha.setBounds(60, 105, 120, 20);
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+               if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+                String senha = txtSenha.getText();
+                if ((txtCpf.getText().endsWith("-")) || (senha.equals(""))) {
+                    JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos.", "Erro", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    Cliente c = ClientesBLL.ObterPorCPF(txtCpf.getText());
+                    if (c == null) {
+                        JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum cliente com este CPF", "Erro", JOptionPane.ERROR_MESSAGE);
+                        txtCpf.requestFocus();
+                    } else {
+                        if (!(senha.equals(c.getSenha()))) {
+                            JOptionPane.showMessageDialog(null, "Senha incorreta." + System.lineSeparator() + "Você tem " + Tentativa + " tentativas restantes", "Erro", JOptionPane.ERROR_MESSAGE);
+                            Tentativa -= 1;
+                            if (Tentativa == 0) {
+                                System.exit(0);
+                            }
+                            txtCpf.requestFocus();
+                        } else {
+                            UsuarioLogado.ClienteID = c.getId();
+                            UsuarioLogado.CPF = c.getCpf();
+                            UsuarioLogado.Nome = c.getNome();
+                            Logado = true;
+                            setVisible(false);
+                        }
+                    }
+                }
+               }
+            }
+        });
 
         btnEntrar = new JButton("Entrar");
         this.getContentPane().add(btnEntrar);
@@ -70,20 +108,25 @@ public class fLogin extends JDialog {
                     JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos.", "Erro", JOptionPane.ERROR_MESSAGE);
                 } else {
                     Cliente c = ClientesBLL.ObterPorCPF(txtCpf.getText());
-                    if (!(senha.equals(c.getSenha()))) {
-                        JOptionPane.showMessageDialog(null, "Senha incorreta." + System.lineSeparator() + "Você tem " + Tentativa + " tentativas restantes", "Erro", JOptionPane.ERROR_MESSAGE);
-                        Tentativa -= 1;
-                        if (Tentativa == 0) {
-                            System.exit(0);
-                        }
+                    if (c == null) {
+                        JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum cliente com este CPF", "Erro", JOptionPane.ERROR_MESSAGE);
+                        txtCpf.requestFocus();
                     } else {
-                        UsuarioLogado.ClienteID = c.getId();
-                        UsuarioLogado.CPF = c.getCpf();
-                        UsuarioLogado.Nome = c.getNome();
-                        Logado = true;
-                        setVisible(false);
+                        if (!(senha.equals(c.getSenha()))) {
+                            JOptionPane.showMessageDialog(null, "Senha incorreta." + System.lineSeparator() + "Você tem " + Tentativa + " tentativas restantes", "Erro", JOptionPane.ERROR_MESSAGE);
+                            Tentativa -= 1;
+                            if (Tentativa == 0) {
+                                System.exit(0);
+                            }
+                            txtCpf.requestFocus();
+                        } else {
+                            UsuarioLogado.ClienteID = c.getId();
+                            UsuarioLogado.CPF = c.getCpf();
+                            UsuarioLogado.Nome = c.getNome();
+                            Logado = true;
+                            setVisible(false);
+                        }
                     }
-
                 }
             }
         });
