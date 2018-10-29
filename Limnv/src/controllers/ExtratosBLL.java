@@ -32,7 +32,7 @@ public class ExtratosBLL {
                 
                 if(arv_atual == null){
                     return sub_arv;
-                }
+                }                
                 
                 if(e.getData().compareTo(arv_atual.getDado().getData()) < 0){
                     arv_atual.setEsquerda(sub_arv);
@@ -45,8 +45,8 @@ public class ExtratosBLL {
                 return null;
             }
         }
-        
-        if(e.getData().compareTo(arv_atual.getDado().getData()) < 0){
+                
+        if(e.getData().compareTo(sub_arv.getDado().getData()) < 0){
             GeraArvore(sub_arv, sub_arv.getEsquerda(), e);
         } else {
             GeraArvore(sub_arv, sub_arv.getDireita(), e);
