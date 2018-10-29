@@ -18,4 +18,6 @@ Sistema básico que simula um ATM/Caixa Eletrônico com banco de dados SQL Serve
 ## Bugs encontrados
 - [ ] Permite operação com saldo negativo
 - [X] Ordenação para exibição do extrato está falha
-- [ ] Gera exceção ao fazer login com um CPF inexistente 
+- [X] Gera exceção ao fazer login com um CPF inexistente 
+- [ ] Não permitir a tranferência para a mesma conta;
+- [ ] Ajuste de tamanho das telas
