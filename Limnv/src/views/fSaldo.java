@@ -13,7 +13,7 @@ public class fSaldo extends JDialog {
     
     public fSaldo(){
         this.setTitle("Saldo");
-        this.setSize(352, 300);
+        this.setSize(280, 160);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.getContentPane().setLayout(null);
         this.setLocationRelativeTo(null);

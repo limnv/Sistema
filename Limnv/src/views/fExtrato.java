@@ -24,7 +24,7 @@ public class fExtrato extends JDialog {
 
     public fExtrato() {
         this.setTitle("Extrato");
-        this.setSize(650, 500);
+        this.setSize(625, 488);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.getContentPane().setLayout(null);
         this.setLocationRelativeTo(null);
