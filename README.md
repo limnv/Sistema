@@ -20,4 +20,4 @@ Sistema básico que simula um ATM/Caixa Eletrônico com banco de dados SQL Serve
 - [X] Ordenação para exibição do extrato está falha
 - [X] Gera exceção ao fazer login com um CPF inexistente 
 - [ ] Não permitir a tranferência para a mesma conta;
-- [ ] Ajuste de tamanho das telas
+- [x] Ajuste de tamanho das telas
