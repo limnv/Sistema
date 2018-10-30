@@ -100,7 +100,7 @@ public class fTransferencias extends JDialog {
                         int ClienteID = ClientesBLL.ObterIDPorCPF(txtCpf.getText());
 
                         List<String> descricoes = new ArrayList<String>();
-                        descricoes = ContasBLL.ObterDescricaoContas(ClienteID);
+                        descricoes = ContasBLL.ObterDescricaoContasComFiltro(ClienteID);
                         for (int i = 0; i < descricoes.size(); i++) {
                             cbContas.addItem(descricoes.get(i));
                         }

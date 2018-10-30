@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import models.*;
+import views.UsuarioLogado;
 
 public class ContasBLL {
     
@@ -94,6 +95,31 @@ public class ContasBLL {
         PreparedStatement ps;
 
         String sql = "SELECT descricao FROM contas WHERE clienteid= " + ClienteID + " AND ativo = 'S'";
+
+        List<String> descricoes = new ArrayList<String>();
+
+        try {
+            ps = conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String Nome = rs.getString("descricao");
+                descricoes.add(Nome);
+            }
+
+            return descricoes;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
+    
+    public static List<String> ObterDescricaoContasComFiltro(int ClienteID) {
+        Connection conn = Conexao.obterConexao();
+
+        PreparedStatement ps;
+
+        String sql = "SELECT descricao FROM contas WHERE clienteid= " + ClienteID + " AND ativo = 'S' AND id <> " + UsuarioLogado.ContaID;
 
         List<String> descricoes = new ArrayList<String>();
 
