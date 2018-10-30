@@ -19,5 +19,6 @@ Sistema básico que simula um ATM/Caixa Eletrônico com banco de dados SQL Serve
 - [ ] Permite operação com saldo negativo
 - [X] Ordenação para exibição do extrato está falha
 - [X] Gera exceção ao fazer login com um CPF inexistente 
-- [ ] Não permitir a tranferência para a mesma conta;
+- [x] Permitir a tranferência para a mesma conta de origem;
 - [x] Ajuste de tamanho das telas
+- [ ] Não valida se existe cliente cadastrado com o CPF fornecido na transferência
