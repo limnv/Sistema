@@ -21,4 +21,4 @@ Sistema básico que simula um ATM/Caixa Eletrônico com banco de dados SQL Serve
 - [X] Gera exceção ao fazer login com um CPF inexistente 
 - [x] Permitir a tranferência para a mesma conta de origem;
 - [x] Ajuste de tamanho das telas
-- [ ] Não valida se existe cliente cadastrado com o CPF fornecido na transferência
+- [x] Não valida se existe cliente cadastrado com o CPF fornecido na transferência
