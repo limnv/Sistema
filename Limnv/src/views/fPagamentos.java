@@ -29,7 +29,7 @@ public class fPagamentos extends JDialog {
 
     public fPagamentos() {
         this.setTitle("Pagamento");
-        this.setSize(352, 510);
+        this.setSize(352, 513);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.getContentPane().setLayout(null);
         this.setLocationRelativeTo(null);

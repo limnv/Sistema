@@ -96,7 +96,7 @@ public class fTransferencias extends JDialog {
 
                 @Override
                 public void focusLost(FocusEvent e) {
-                    if (!txtCpf.getText().endsWith("-")) {
+                    if (!txtCpf.getText().equals("   .   .   -  ")) {
                         int ClienteID = ClientesBLL.ObterIDPorCPF(txtCpf.getText());
                         if (ClienteID == -1) {
                             JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum cliente com este CPF", "Erro", JOptionPane.ERROR_MESSAGE);

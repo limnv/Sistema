@@ -28,7 +28,7 @@ public class fExtrato extends JDialog {
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.getContentPane().setLayout(null);
         this.setLocationRelativeTo(null);
-        
+
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/dd/MM HH:mm:ss");
 
         lblLogo = new JLabel("LIMNV");
@@ -65,7 +65,7 @@ public class fExtrato extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 String escolha = cbPrazo.getSelectedItem().toString();
                 int Dias = 0;
-                switch(escolha){
+                switch (escolha) {
                     case "7 Dias":
                         Dias = 7;
                         break;
@@ -83,10 +83,10 @@ public class fExtrato extends JDialog {
                 Calendar c = Calendar.getInstance();
                 c.setTime(dt);
                 c.add(Calendar.DAY_OF_MONTH, -Dias);
-                
+
                 DataFinal = formatter.format(dt);
                 DataInicial = formatter.format(c.getTime());
-                
+
                 PopulaTabela();
 
             }
@@ -99,6 +99,18 @@ public class fExtrato extends JDialog {
         this.getContentPane().add(sp);
         sp.setBounds(5, 95, 600, 350);
 
+        //Método que carrega o extrato ao iniciar
+        Date dt = new Date();
+        dt.getTime();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DAY_OF_MONTH, -7);
+
+        DataFinal = formatter.format(dt);
+        DataInicial = formatter.format(c.getTime());
+
+        PopulaTabela();
+
     }
 
     public void Exibir() {
@@ -107,14 +119,15 @@ public class fExtrato extends JDialog {
     }
 
     public void PopulaTabela() {
-        if(extratosTableModel != null)
+        if (extratosTableModel != null) {
             extratosTableModel.setNumRows(0);
+        }
         extratosTableModel = new ExtratoTableModel(ExtratosBLL.ObterListaExtrato(DataInicial, DataFinal));
         tblExtrato.setModel(extratosTableModel);
-        tblExtrato.getColumnModel().getColumn(0).setPreferredWidth(150);
-        tblExtrato.getColumnModel().getColumn(1).setPreferredWidth(180);
-        tblExtrato.getColumnModel().getColumn(2).setPreferredWidth(80);
-        tblExtrato.getColumnModel().getColumn(3).setPreferredWidth(80);
+        tblExtrato.getColumnModel().getColumn(0).setPreferredWidth(115);
+        tblExtrato.getColumnModel().getColumn(1).setPreferredWidth(265);
+        tblExtrato.getColumnModel().getColumn(2).setPreferredWidth(50);
+        tblExtrato.getColumnModel().getColumn(3).setPreferredWidth(50);
     }
 
 }
