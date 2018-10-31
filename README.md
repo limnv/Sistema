@@ -16,7 +16,7 @@ Sistema básico que simula um ATM/Caixa Eletrônico com banco de dados SQL Serve
 - [x] Validação CPF (Se é válido e se já existe no sistema)
 
 ## Bugs encontrados
-- [ ] Permite operação com saldo negativo
+- [x] Permite operação com saldo negativo
 - [X] Ordenação para exibição do extrato está falha
 - [X] Gera exceção ao fazer login com um CPF inexistente 
 - [x] Permitir a tranferência para a mesma conta de origem;
