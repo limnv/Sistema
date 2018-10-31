@@ -147,10 +147,12 @@ public class fTransferencias extends JDialog {
         btnEfetuar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double vlrSaque = Double.parseDouble(txtValor.getText().replace(",", "."));
+                double vlrOperacao = Double.parseDouble(txtValor.getText().replace(",", "."));
                 if (txtValor.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Você deve informar o valor do saque.", "Erro", JOptionPane.ERROR_MESSAGE);
-                } else if (vlrSaque > ContasBLL.ObterSaldo(UsuarioLogado.ContaID)) {
+                } else if (vlrOperacao < 0){ 
+                    JOptionPane.showMessageDialog(null, "O valor informado não pode ser negativo.", "Erro", JOptionPane.ERROR_MESSAGE);
+                } else if (vlrOperacao > ContasBLL.ObterSaldo(UsuarioLogado.ContaID)) {
                     JOptionPane.showMessageDialog(null, "Saldo insuficiente para realizar esta operação.", "Erro", JOptionPane.ERROR_MESSAGE);
                 } else {
                     if (JOptionPane.showConfirmDialog(null, "Deseja realmente efetuar esta operação?", "Confirmação", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {

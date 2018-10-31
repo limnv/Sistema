@@ -77,6 +77,8 @@ public class fSaque extends JDialog{
                 double vlrSaque = Double.parseDouble(txtValor.getText().replace(",", "."));
                 if (txtValor.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Você deve informar o valor do saque.", "Erro", JOptionPane.ERROR_MESSAGE);
+                } else if (vlrSaque < 0){ 
+                    JOptionPane.showMessageDialog(null, "O valor informado não pode ser negativo.", "Erro", JOptionPane.ERROR_MESSAGE);
                 } else if (vlrSaque > ContasBLL.ObterSaldo(UsuarioLogado.ContaID)){
                     JOptionPane.showMessageDialog(null, "Saldo insuficiente para realizar esta operação.", "Erro", JOptionPane.ERROR_MESSAGE);
                 } else {

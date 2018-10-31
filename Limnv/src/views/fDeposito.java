@@ -109,6 +109,8 @@ public class fDeposito extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 if ((!rbCheque.isSelected() && !rbDinheiro.isSelected()) || txtValor.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Você deve informar o valor e o tipo de depósito.", "Erro", JOptionPane.ERROR_MESSAGE);
+                } else if (Double.parseDouble(txtValor.getText().replace(",", ".")) < 0){ 
+                    JOptionPane.showMessageDialog(null, "O valor informado não pode ser negativo.", "Erro", JOptionPane.ERROR_MESSAGE);
                 } else {
                     if (JOptionPane.showConfirmDialog(null, "Deseja realmente efetuar esta operação?", "Confirmação", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                         d = new Deposito();

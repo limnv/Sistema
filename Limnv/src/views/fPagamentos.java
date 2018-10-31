@@ -221,6 +221,8 @@ public class fPagamentos extends JDialog {
                 double vlrConta = Double.parseDouble(txtValor.getText().replace(",", "."));
                 if (CodigoBarras.equals("")) {
                     JOptionPane.showMessageDialog(null, "Você deve informar o código de barra.", "Erro", JOptionPane.ERROR_MESSAGE);
+                } else if (vlrConta < 0){ 
+                    JOptionPane.showMessageDialog(null, "O valor informado não pode ser negativo.", "Erro", JOptionPane.ERROR_MESSAGE);
                 } else if (vlrConta > ContasBLL.ObterSaldo(UsuarioLogado.ContaID)) {
                     JOptionPane.showMessageDialog(null, "Saldo insuficiente para realizar esta operação.", "Erro", JOptionPane.ERROR_MESSAGE);
                 } else {
