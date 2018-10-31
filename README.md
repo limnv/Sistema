@@ -13,7 +13,7 @@ Sistema básico que simula um ATM/Caixa Eletrônico com banco de dados SQL Serve
 - [x] Alteração de dados cadastrais
 - [x] Árvore para exibição de extrato
 - [x] Extrato
-- [ ] Validação CPF (Se é válido e se já existe no sistema)
+- [x] Validação CPF (Se é válido e se já existe no sistema)
 
 ## Bugs encontrados
 - [ ] Permite operação com saldo negativo
