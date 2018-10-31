@@ -106,4 +106,29 @@ public class ClientesBLL {
         } catch (SQLException ex) {
         }
     }
+    
+    public static boolean ValidarExistenciaCPF(String CPF){
+        Connection conn = Conexao.obterConexao();
+
+        PreparedStatement ps;
+
+        String sql = "select count(*) as qtd from clientes where cpf = '" + CPF + "'";
+
+        try {
+            ps = conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+            
+            int qtd = -1;
+            
+            while (rs.next()) {
+                qtd = rs.getInt("qtd");
+            }
+            
+            return (qtd == 0);
+
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
 }

@@ -98,11 +98,15 @@ public class fTransferencias extends JDialog {
                 public void focusLost(FocusEvent e) {
                     if (!txtCpf.getText().endsWith("-")) {
                         int ClienteID = ClientesBLL.ObterIDPorCPF(txtCpf.getText());
-
-                        List<String> descricoes = new ArrayList<String>();
-                        descricoes = ContasBLL.ObterDescricaoContasComFiltro(ClienteID);
-                        for (int i = 0; i < descricoes.size(); i++) {
-                            cbContas.addItem(descricoes.get(i));
+                        if (ClienteID == -1) {
+                            JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum cliente com este CPF", "Erro", JOptionPane.ERROR_MESSAGE);
+                            txtCpf.requestFocus();
+                        } else {
+                            List<String> descricoes = new ArrayList<String>();
+                            descricoes = ContasBLL.ObterDescricaoContasComFiltro(ClienteID);
+                            for (int i = 0; i < descricoes.size(); i++) {
+                                cbContas.addItem(descricoes.get(i));
+                            }
                         }
                     }
                 }
